@@ -21,7 +21,18 @@ http://localhost:8080/api/v1/async/(Job ID)?param01=(任意文字列)&param02=�
 
 #ローカル実行の場合の例
 http://localhost:8080/api/v1/async/job01?param01=aaa&param02=bbb
+
+#実行後、ブラウザに、以下の応答が返って来ます
+{
+    result: "accept"
+}    
 ```
 
 4. sample-asyncのAPで、sample-webから受け取ったメッセージ（Job IDとparam01、param02の値）をログ出力します。
     * 本来、受け取ったメッセージをもとにロジック実行しますが、簡単なサンプルなので、ログ出力のみです。
+
+```
+#実行後、以下のようなログが出力されます
+
+2022-08-06 07:50:47.197  INFO 15268 --- [ntContainer#0-1] c.example.demo.app.AsyncMessageListener  : ジョブ実行依頼受信[JobId:job01][JobParameter:param01=aaa,param02=bbb]
+```    
