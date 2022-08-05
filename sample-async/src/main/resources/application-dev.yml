@@ -1,0 +1,9 @@
+server:
+  port: 8000
+aws:
+  sqs:
+    queue:
+      name: SampleQueue
+    concurrency: 3-10
+  sqslocal:    
+    port: 18000

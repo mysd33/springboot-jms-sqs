@@ -1,0 +1,6 @@
+aws:
+  sqs:
+    queue:
+      name: SampleQueue      
+  sqslocal:    
+    port: 18000

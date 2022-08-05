@@ -1,0 +1,5 @@
+aws:
+  sqs:
+    queue:
+      name: SampleQueue      
+    region: ap-northeast-1      
