@@ -2,6 +2,7 @@
 ## 本サンプルプログラムについて
 * Spring BootでSpring JMS + AWS SQS Messaging Libraryをつかって、非同期実行依頼を実施するサンプルAPです。
 * 開発端末ローカル実行時にAWS SQSがなくても動作するよう、AP起動時にSQSの代わりに、SQS互換のFakeとしてElasticMQを組み込みで起動して動作しますので、特にAWS環境がなくても単独実行可能です。
+![構成](img/springboot-jms-sqs.png)
 ## プロジェクト構成
 * sample-web
     * Spring BootのWebアプリケーションで、APIから、非同期実行依頼が可能です。
