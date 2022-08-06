@@ -40,7 +40,7 @@
     ```
     #実行後、以下のようなログが出力されます
 
-    2022-08-06 07:50:47.197  INFO 15268 --- [ntContainer#0-1] c.example.demo.app.AsyncMessageListener  : ジョブ実行依頼受信[JobId:job01][JobParameter:param01=aaa,param02=bbb]
+    2022-08-06 07:50:47.197  INFO 15268 --- [ntContainer#0-1] c.example.demo.app.AsyncMessageListener  : ジョブ実行依頼受信[MessageId:ID:ccd95d70-7680-4513-aaeb-19f6466951f4][JobId:job01][JobParameter:param01=aaa,param02=bbb]
     ```    
 1. AWS SQSとの連携した動作確認
     * デフォルトでは、「spring.profiles.active」プロパティが「dev」になっていて、プロファイルdevの場合、ElasticMQを使用するようになっています。 
