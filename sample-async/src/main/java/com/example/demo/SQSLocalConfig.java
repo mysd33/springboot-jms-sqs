@@ -10,11 +10,11 @@ import com.amazon.sqs.javamessaging.SQSConnectionFactory;
 import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 
-/** 
+/**
  * SQS Local起動の設定クラス(開発時のみ)
  */
 @Configuration
-@Profile("dev") 
+@Profile("dev")
 public class SQSLocalConfig {
 	private static final String HTTP_LOCALHOST = "http://localhost:";
 	private static final String ELASTICMQ = "elasticmq";
@@ -29,8 +29,8 @@ public class SQSLocalConfig {
 	 */
 	@Bean
 	public SQSConnectionFactory sqsConnectionFactoryLocal() {
-		AmazonSQSClientBuilder builder = AmazonSQSClientBuilder.standard();
-		builder.setEndpointConfiguration(new EndpointConfiguration(HTTP_LOCALHOST + port, ELASTICMQ));
+		AmazonSQSClientBuilder builder = AmazonSQSClientBuilder.standard()
+				.withEndpointConfiguration(new EndpointConfiguration(HTTP_LOCALHOST + port, ELASTICMQ));
 		SQSConnectionFactory connectionFactory = new SQSConnectionFactory(new ProviderConfiguration(), builder);
 		return connectionFactory;
 	}

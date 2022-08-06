@@ -19,27 +19,27 @@ import com.example.demo.infra.ElasticMQLocalExecutor;
  *
  */
 @Configuration
-@Profile("dev")	
+@Profile("dev")
 @ConditionalOnClass(SQSRestServer.class)
 public class SQSLocalConfig {
 	private static final String HTTP_LOCALHOST = "http://localhost:";
 	private static final String ELASTICMQ = "elasticmq";
-	
+
 	@Value("${aws.sqslocal.port}")
 	private String port;
 
 	/**
 	 * ElastiqMQ(SQSLocal)起動する場合のSQSConnectionFactoryの定義
 	 */
-	@Bean	
+	@Bean
 	public SQSConnectionFactory sqsConnectionFactoryLocal() {
-		AmazonSQSClientBuilder builder = AmazonSQSClientBuilder.standard();
-		builder.setEndpointConfiguration(new EndpointConfiguration(HTTP_LOCALHOST + port, ELASTICMQ));
+		AmazonSQSClientBuilder builder = AmazonSQSClientBuilder.standard()
+				.withEndpointConfiguration(new EndpointConfiguration(HTTP_LOCALHOST + port, ELASTICMQ));
 		SQSConnectionFactory connectionFactory = new SQSConnectionFactory(new ProviderConfiguration(), builder);
 		return connectionFactory;
 	}
-		
-	/** 
+
+	/**
 	 * ElasticMQの起動クラス
 	 */
 	@Bean

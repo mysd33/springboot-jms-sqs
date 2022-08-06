@@ -25,10 +25,9 @@ public class SQSProdConfig {
 	 */
 	@Bean
 	public SQSConnectionFactory sqsConnectionFactory() {
-		AmazonSQSClientBuilder builder = AmazonSQSClientBuilder.standard();
-		builder.setRegion(region);
+		AmazonSQSClientBuilder builder = AmazonSQSClientBuilder.standard().withRegion(region);
 		SQSConnectionFactory connectionFactory = new SQSConnectionFactory(new ProviderConfiguration(), builder);
 		return connectionFactory;
 	}
-	
+
 }

@@ -42,6 +42,8 @@ public class SQSConfig {
 		factory.setDestinationResolver(new DynamicDestinationResolver());
 		factory.setConcurrency(concurrency);
 		factory.setMessageConverter(jacksonJmsMessageConverter());
+		//CLIENT_ACKNOWLEDGEモード：正常終了時のみ確認応答を返しメッセージをSQSから削除
+		//エラー時は、SQSにメッセージが残る
 		factory.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE);
 		return factory;
 	}
