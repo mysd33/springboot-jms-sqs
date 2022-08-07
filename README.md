@@ -20,7 +20,7 @@
     * デフォルト（「spring.profiles.active=dev」）実行時、ElasticMQをリッスンするので、必ず先にsample-webを起動しElastiqMQが起動した状態で、sample-asyncを起動してください。
 
 1. 動作確認
-    * ブラウザで、以下入力してください。 sample-webのAPが、GETリクエストを受け取り、SQS(ElastiqMQ)へ非同期実行依頼のメッセージを送信します。
+    * ブラウザやREST APIクライアント（Postman等）で、以下入力してください。 sample-webのAPが、GETリクエストを受け取り、SQS(ElastiqMQ)へ非同期実行依頼のメッセージを送信します。
     * 8080ポートで受け取ります。端末ローカル実行の場合は以下の通りです。
     * GETメソッドの場合
     ```
