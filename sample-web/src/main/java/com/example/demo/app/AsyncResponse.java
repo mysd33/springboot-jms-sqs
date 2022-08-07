@@ -9,19 +9,19 @@ import lombok.Getter;
  * ジョブ処理依頼の受理結果を返却するクラス
  *
  */
-public class JobResponse implements Serializable {
+public class AsyncResponse implements Serializable {
 
 	@Getter
 	private final String result;
 
 	// 受理
-	public static final JobResponse ACCEPT = new JobResponse("accept");
+	public static final AsyncResponse ACCEPT = new AsyncResponse("accept");
 	// 拒絶
-	public static final JobResponse Reject = new JobResponse("reject");
+	public static final AsyncResponse Reject = new AsyncResponse("reject");
 
 	private static final long serialVersionUID = 8603261817673346760L;
 
-	private JobResponse(final String result) {
+	private AsyncResponse(final String result) {
 		this.result = result;
 	}
 
