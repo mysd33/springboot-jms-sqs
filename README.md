@@ -34,7 +34,7 @@
         result: "accept"
     }    
     ```
-    * POSTメソッドの場合
+    * POSTメソッドの場合（APIクライアントを使ってください）
     ```
    「http://localhost:8080/api/v1/async/」
 
@@ -45,7 +45,7 @@
         "param02" : "bbb"
     }
     
-    #実行後、ブラウザに、以下の応答が返って来ます
+    #実行後、APIクライアントに以下の応答が返って来ます
     {
         result: "accept"
     }    
