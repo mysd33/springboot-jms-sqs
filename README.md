@@ -58,9 +58,9 @@
 
     2022-08-06 07:50:47.197  INFO 15268 --- [ntContainer#0-1] c.example.demo.app.AsyncMessageListener  : ジョブ実行依頼受信[MessageId:ID:ccd95d70-7680-4513-aaeb-19f6466951f4][JobId:job01][JobParameter:param01=aaa,param02=bbb]
     ```    
-1. AWS SQSとの連携した動作確認
+1. AWS SQSと連携したAP動作確認
     * デフォルトでは、「spring.profiles.active」プロパティが「dev」になっていて、プロファイルdevの場合、ElasticMQを使用するようになっています。 
-    * AWS上のSQSにアクセスする動作に変更する場合は、例えばJVM引数を「-Dspring.profiles.active=prod」に変更するか、環境変数「SPRING_PROFILES_ACTIVE=prod」を設定する等して、プロファイルを「prod」に変えて実行してください。    
+    * AWS上のSQSにアクセスする動作に変更する場合は、例えばJVM引数を「-Dspring.profiles.active=prod」に変更するか、環境変数「SPRING_PROFILES_ACTIVE=prod」を設定する等して、sample-web、sample-asyncの両方のプロジェクトのプロファイルを「prod」に変えて実行してください。    
     * AP実行前に、AWS SQSで標準キューを作成しておく必要があります。application-prod.ymlの設定上、 キュー名は「SampleQueue」、キューのリージョンは「ap-northeast-1」（東京）になっていますので、異なる名前、リージョンで作成したい場合は、sample-web、sample-asyncの両方のプロジェクトのapplication-prod.ymlの設定も変更してください。
     * APがSQSにアクセスする権限が必要なので、開発端末上での実行する場合はSQSのアクセス権限をもったIAMユーザのクレデンシャル情報が「%USERPROFILE%/.aws/credentials」や「~/.aws/credentials」に格納されている、もしくはEC2やECS等のAWS上のラインタイム環境で実行する場合は対象のAWSリソースにSQSのアクセス権限を持ったIAMロールが付与されている必要があります。
 
