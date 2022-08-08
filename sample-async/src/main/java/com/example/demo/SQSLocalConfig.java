@@ -21,8 +21,6 @@ public class SQSLocalConfig {
 
 	@Value("${aws.sqslocal.port}")
 	private String port;
-	@Value("${aws.sqs.concurrency}")
-	private String concurrency;
 
 	/**
 	 * ElastiqMQ(SQSLocal)起動する場合のSQSConnectionFactoryの定義
