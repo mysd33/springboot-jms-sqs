@@ -1,7 +1,8 @@
 # springboot-jms-sqs
 ## 本サンプルプログラムについて
-* Spring BootでSpring JMS + AWS SQS Messaging Libraryをつかって、非同期実行依頼を実施するサンプルAPです。
-* 開発端末ローカル実行時にAWS SQSがなくても動作するよう、AP起動時にSQSの代わりに、SQS互換のFakeとしてElasticMQを組み込みで起動して動作しますので、特にAWS環境がなくても単独実行可能です。
+* Spring BootでSpring JMS + AWS SQS Messaging Libraryを使って、SQSを介在したメッセージング処理方式で、非同期実行依頼を実施するサンプルAPです。
+* 非同期実行処理アプリケーションは、Spring Batchを使用しており、非同期実行依頼メッセージで指定されたジョブIDとパラメータのジョブを実行するようになっています。
+* 開発端末ローカル実行時にAWS SQSがなくても動作するよう、AP起動時にSQSの代わりに取得したジョブ実行依頼のメッセージをもとに対象のジョブを、SQS互換のFakeとしてElasticMQを組み込みで起動して動作しますので、特にAWS環境がなくても単独実行可能です。
 ![構成](img/springboot-jms-sqs.png)
 ## プロジェクト構成
 * sample-web
@@ -54,9 +55,13 @@
     * sample-asyncのAPが、SQS(ElastiqMQ)を介してsample-webから受け取ったメッセージ（Job IDとparam01、param02の値）をログ出力します。
     * 本来、受け取ったメッセージをもとにロジック実行しますが、簡単なサンプルなので、ログ出力のみです。
     ```
-    #実行後、以下のようなログが出力されます
+    #実行後、以下のようなログが出力されます。
+    2022-08-18 23:17:07.284  INFO 2424 --- [ntContainer#0-2] c.e.d.app.message.AsyncMessageListener   : ジョブ実行依頼受信[MessageId:ID:c05a3147-fdf2-40e6-b607-650f5e530e3d][JobId:job001][JobParameter:param01=aaa,param02=ccc]
+    …
+    2022-08-18 23:17:07.296  INFO 2424 --- [ntContainer#0-2] c.e.d.domain.job.job001.Job001Tasklet    : Job001Tasklet実行
+    …
+    2022-08-18 23:17:07.303  INFO 2424 --- [ntContainer#0-2] c.e.d.app.message.AsyncMessageListener   : ジョブ実行[MessageId:ID:c05a3147-fdf2-40e6-b607-650f5e530e3d][JobId:job001][JobExecutionId:2]
 
-    2022-08-06 07:50:47.197  INFO 15268 --- [ntContainer#0-1] c.example.demo.app.AsyncMessageListener  : ジョブ実行依頼受信[MessageId:ID:ccd95d70-7680-4513-aaeb-19f6466951f4][JobId:job01][JobParameter:param01=aaa,param02=bbb]
     ```    
 1. AWS SQSと連携したAP動作確認
     * デフォルトでは、「spring.profiles.active」プロパティが「dev」になっていて、プロファイルdevの場合、ElasticMQを使用するようになっています。 
