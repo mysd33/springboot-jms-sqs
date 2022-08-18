@@ -26,9 +26,10 @@
     * GETメソッドの場合
     ```
     「http://localhost:8080/api/v1/async/(Job ID)?param01=(任意文字列)&param02=（任意の文字列）」
+    #現状Job ID job001にしてください
 
     #ローカル実行の場合の例
-    http://localhost:8080/api/v1/async/job01?param01=aaa&param02=bbb
+    http://localhost:8080/api/v1/async/job001?param01=aaa&param02=bbb
 
     #実行後、ブラウザに、以下の応答が返って来ます
     {

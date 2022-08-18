@@ -2,7 +2,6 @@ package com.example.demo.app.job.job001;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.step.tasklet.Tasklet;
@@ -16,7 +15,7 @@ import com.example.demo.domain.job.job001.Job001Tasklet;
  * Job001の定義
  */
 @Configuration
-@EnableBatchProcessing
+
 public class Job001Config {
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;

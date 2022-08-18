@@ -29,11 +29,10 @@ public class AsyncMessageListener {
 	 * 
 	 * @param request ジョブの要求情報
 	 * @throws JobParametersInvalidException ジョブパラメータが不正
-	 * @throws NoSuchJobException 対象のジョブがない
 	 */
 	@JmsListener(destination =  "${aws.sqs.queue.name}")
 	public void onMessage(@Header(JmsHeaders.MESSAGE_ID)  final String messageId, final JobRequest request) 
-			throws JobParametersInvalidException, NoSuchJobException {
+			throws JobParametersInvalidException {
 			String jobId = request.getJobId();
 			String jobParameters = request.toParameterString();
 			log.info("ジョブ実行依頼受信[MessageId:{}][JobId:{}][JobParameter:{}]", messageId,jobId, jobParameters);			
@@ -42,6 +41,9 @@ public class AsyncMessageListener {
 				log.info("ジョブ実行完了[MessageId:{}][JobId:{}][JobExecutionId:{}]", messageId, jobId, jobExecutionId);			
 			} catch (JobInstanceAlreadyExistsException e) {
 				log.warn("すでにこのジョブは実行されています。[SQS MessageId:{}][Jobid:{}][JobParameter:{}]", messageId, jobId, jobParameters);
+			} catch (NoSuchJobException e) {
+				//サンプルAPのためキャッチして正常終了しているが、要件によってはthrows句にしてキューからメッセージを消さない
+				log.warn("該当のジョブIDはありません。[SQS MessageId:{}][JobId:{}]", messageId, jobId);
 			}
 	}
 }
